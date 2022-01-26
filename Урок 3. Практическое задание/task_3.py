@@ -22,3 +22,41 @@
 р
 а
 """
+import hashlib
+
+
+def prim(s):
+    a = set()
+    while s[:-1] != '':
+        a.add(s[:-1])
+        s = s[:-1]
+    return a
+
+
+def priv(s, a):
+    while s[1:] != '':
+        a.add(s[1:])
+        s = s[1:]
+    return a
+
+
+def midl(s, a):
+    while s[1:-1] != '':
+        a.add(s[1:-1])
+        s = s[1:-1]
+    return a
+
+
+def pdstr():
+    s = input('Введите слово ')
+    a = prim(s)
+    priv(s, a)
+    midl(s, a)
+    b = set()
+    for i in a:
+        t = hashlib.sha256(i.encode('utf-8')).hexdigest()
+        b.add(t)
+    return f'{s} - {len(a)} уникальных подстрок:\n {a} \n Хэши:\n {b}'
+
+
+print(pdstr())

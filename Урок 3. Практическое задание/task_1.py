@@ -23,3 +23,45 @@ b) выполните со списком и словарем операции: 
 обязательно реализуйте ф-цию-декоратор и пусть она считает время
 И примените ее к своим функциям!
 """
+import time
+
+"""a)"""
+st = time.time()
+lst = [i for i in range(1, 15)]  # O(n)
+print(lst)
+print(f'Время списка - {time.time() - st}')
+
+st = time.time()
+dicti = {i: 1 for i in range(1, 15)}  # O(n)
+print(dicti)
+print(f'Время словаря - {time.time() - st}')
+"""
+Время списка - 3.552436828613281e-05
+Время словаря - 6.198883056640625e-06
+    Сложность генераторов в О-нотациях одинаковая,
+а вот по времени выполнения генератор заполнения списка отрабатывает быстрее
+"""
+
+"""b)"""
+
+st = time.time()
+lst[0] = 4  # Меняем 1 символ
+print(f'Время изменения списка - {time.time() - st}')
+st = time.time()
+lst.pop()
+print(f'Время удаления списка (pop) - {time.time() - st}')
+st = time.time()
+lst.remove(10)
+print(f'Время удаления списка (remove) - {time.time() - st}')
+st = time.time()
+dicti[1] = 10
+print(f'Время изменения словаря - {time.time() - st}')
+st = time.time()
+dicti.popitem()
+print(f'Время удаления словаря (popitem) - {time.time() - st}')
+st = time.time()
+del dicti[13]
+print(f'Время удаления списка (del) - {time.time() - st}')
+'''
+Выводы: Заполнять быстрее список, но работать с элементами быстрее у словаря
+'''

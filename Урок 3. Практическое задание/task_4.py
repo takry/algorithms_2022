@@ -14,3 +14,24 @@
 и одного из алгоритмов, например, sha512
 Можете усложнить задачу, реализовав ее через ООП
 """
+import hashlib
+
+memory = {}
+
+
+def g(n):
+    memory[n] = hashlib.sha256(n.encode('utf-8')).hexdigest()
+    print(f'{memory[n]} - хэш добавлен в кэш')
+    return url()
+
+
+def url():
+    n = (input("Введите url: "))
+    if n in memory.keys():
+        print(f'{memory[n]} - хэш из кэша')
+        url()
+    else:
+        g(n)
+
+
+url()
