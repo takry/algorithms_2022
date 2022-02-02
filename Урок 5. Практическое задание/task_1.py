@@ -28,3 +28,18 @@
 Предприятия, с прибылью выше среднего значения: Рога
 Предприятия, с прибылью ниже среднего значения: Копыта
 """
+from collections import defaultdict
+from functools import reduce
+
+c = defaultdict(int)
+n = int(input('Введите количество предприятий для расчета прибыли: '))
+e = 0
+for i in range(n):
+    g = input('Введите название предприятия: ')
+    t = input('через пробел введите прибыль данного предприятия за каждый квартал(Всего 4 квартала): ').split()
+    t1 = list(map(int, t))
+    c[g] = t1
+for k in c.keys():
+    e = e + reduce(lambda x, y: x + y, c[k])
+print(f'Средняя годовая прибыль всех предприятий: {e/n}')
+[print(f'Предприятия, с прибылью выше среднего значения: {k}') if reduce(lambda x, y: x + y, c[k]) > (e/n) else print(f'Предприятия, с прибылью ниже среднего значения: {k}') for k in c.keys()]
