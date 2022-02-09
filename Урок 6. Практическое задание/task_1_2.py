@@ -30,3 +30,22 @@
 
 Это файл для второго скрипта
 """
+
+# F strings
+
+from memory_profiler import profile
+
+
+@profile
+def concat(q, w, e, r, t, y):
+    p = (q + '  ' + w + '  ' + e + '  ' + r + '  ' + t + '  ' + y)
+    return print(p)
+
+
+@profile
+def f_strings(q, w, e, r, t, y):
+    return f'{q} + '  ' + {w} + '  ' + {e} + '  ' + {r} + '  ' + {t} + '  ' + {y}'
+
+
+concat('1', '2', '3', '4', '5', '6')
+f_strings('1', '2', '3', '4', '5', '6')

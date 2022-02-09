@@ -30,3 +30,25 @@
 
 Это файл для третьего скрипта
 """
+# Функция Map
+
+from memory_profiler import profile
+
+a = [i for i in range(1, 15)]
+
+
+@profile
+def map_a(a):
+    a1 = map(str, a)
+    print(type(a1))
+    return a1
+
+@profile
+def no_map_a(a):
+    a1 = []
+    for i in a:
+        a1.append(str(i))
+    print(type(a1))
+    return a1
+map_a(a)
+no_map_a(a)

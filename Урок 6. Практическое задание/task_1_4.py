@@ -30,3 +30,18 @@
 
 Это файл для четвертого скрипта
 """
+
+# Серилизация. Json много меньше дикта
+
+from json import loads, dumps
+from pympler import asizeof
+
+gen_dict = {i: i * 2 for i in range(100000)}
+dumped_dict = dumps(gen_dict)
+print(type(dumped_dict))
+
+out_dict = loads(dumped_dict)
+print(type(out_dict))
+
+print('Размер dict: ', asizeof.asizeof(gen_dict))
+print('Размер json: ', asizeof.asizeof(dumped_dict))
