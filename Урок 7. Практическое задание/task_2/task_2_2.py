@@ -13,3 +13,29 @@
 
 сделайте замеры на массивах длиной 10, 100, 1000 элементов
 """
+from random import randint
+from timeit import timeit
+
+m = int(input("M= "))
+arr = [randint(-100, 100) for _ in range(2 * m + 1)]
+print(arr)
+
+
+def no_sort(arr):
+    lst = arr
+    for i in range(len(arr) // 2):
+        lst.remove(max(lst))
+        return max(lst)
+
+
+print(no_sort(arr))
+print(timeit('no_sort(arr[:])', globals=globals(), number=100))
+'''
+M= 10
+0.00044072899618186057
+M= 100
+0.0011908400047104806
+M= 1000
+0.005672825005603954
+
+'''
