@@ -30,3 +30,39 @@
 
 Это файл для пятого скрипта
 """
+# Filter
+
+from memory_profiler import memory_usage, profile
+
+
+def memory(func):
+    def wrapper(*args, **kwargs):
+        m1 = memory_usage()
+        res = func(*args)
+        m2 = memory_usage()
+        mem_diff = m2[0] - m1[0]
+        print(f"Выполнение заняло {mem_diff} Mib")
+        return res
+
+    return wrapper
+
+
+n = [1, 2, 4, '', 5, '', 7, '', 8, 10, 11]
+
+
+@profile
+def filter_(n):
+    n1 = filter(None, n)
+    return list(n1)
+
+
+@profile
+def no_filter_(n):
+    for i in n:
+        if i == '':
+            n.remove(i)
+    return n
+
+
+filter_(range(50000))
+no_filter_(range(50000))

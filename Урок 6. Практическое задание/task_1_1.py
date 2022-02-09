@@ -30,3 +30,46 @@
 
 Это файл для первого скрипта
 """
+
+"""
+Урок 2.
+Задание 4.	Найти сумму n элементов следующего ряда чисел:
+1 -0.5 0.25 -0.125 ...
+Количество элементов (n) вводится с клавиатуры."""
+
+# Меняем рекурсию на цикл
+
+n = int(input('Введите количество элементов: '))
+s = 1
+
+from memory_profiler import profile
+
+
+@profile
+def c_r(i):
+    def count_recur(i):
+        global s
+        if i == n:
+            return print(f'Количество элементов - {n}, их сумма - {s}')
+        if i % 2 == 1:
+            s = s + ((s / 2) * -1)
+        else:
+            s = s + (s / 2)
+        return count_recur(i + 1)
+
+    return count_recur(i)
+
+
+@profile
+def count_if(i):
+    s = 1
+    for i in range(n):
+        if i % 2 == 1:
+            s = s + ((s / 2) * -1)
+        else:
+            s = s + (s / 2)
+    return print(f'Количество элементов - {n}, их сумма - {s}')
+
+
+c_r(0)
+count_if(0)
