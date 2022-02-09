@@ -15,3 +15,29 @@
 
 В конце сделайте аналитику какой трех из способов оказался эффективнее
 """
+from random import randint
+from timeit import timeit
+from statistics import median
+
+m = int(input("M= "))
+arr = [randint(-100, 100) for _ in range(2 * m + 1)]
+print(arr)
+
+
+def med_(arr):
+    return median(arr)
+
+
+print(med_(arr))
+print(timeit('med_(arr[:])', globals=globals(), number=100))
+'''
+M= 10
+0.00017338900943286717
+M= 100
+0.0009940980089595541
+M= 1000
+0.019242713999119587
+
+Встроенные функции несоизмеримо быстрее. На то они и встроенные)
+
+'''
